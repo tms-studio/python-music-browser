@@ -1,0 +1,2 @@
+class MusicBrowserException(Exception):
+    pass
