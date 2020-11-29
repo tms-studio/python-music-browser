@@ -1,13 +1,12 @@
 from typing import List
 from .plugins import Plugin
-from .exceptions import MusicBrowserException
-
+import music_browser.exceptions
 
 REQUIRED = True
 OPTIONAL = False
 
 
-class TrackQuery:
+class TrackMetadataQuery:
     """
     Object used to retrieve requested track metadata, given a few info about the track.
     """
@@ -41,7 +40,7 @@ class TrackQuery:
         """
         for query_field, required in query_fields.items():
             if required and not hasattr(self.known_fields, query_field):
-                raise MusicBrowserException(f"Field {query_field} requested")
+                raise music_browser.exceptions.UnknownField(f"No plugin can resolve required field {query_field}.")
         self.query_fields = query_fields
         return self
 
