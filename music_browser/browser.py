@@ -1,3 +1,5 @@
+from typing import List
+from .models import SimpleTrack
 from .metadata import TrackMetadataQuery
 
 
@@ -9,13 +11,14 @@ class MusicBrowser:
         plugins -- (list) Plugins ordered by priority used to fetch metadata.
     """
 
-    def __init__(self, plugins=None):
+    def __init__(self, search_plugin=None, completion_plugins=None):
+        self.search_plugin = search_plugin
         self.plugins = []
         self.known_fields = set()
 
-        if plugins:
+        if completion_plugins:
             # register plugins that improve MusicBrowser sources
-            for plugin_module in plugins:
+            for plugin_module in completion_plugins:
                 self.use_plugin(plugin_module)
 
     def query(self, query_string=None, title=None, artist=None, spotify_id=None):
@@ -31,6 +34,12 @@ class MusicBrowser:
         return TrackMetadataQuery(self.plugins).query(
             query_string=query_string, title=title, artist=artist, spotify_id=spotify_id
         )
+
+    def search(self, query: str) -> List[SimpleTrack]:
+        """
+        Use search_plugin to retrieve a list of tracks.
+        """
+        return self.search_plugin.search(query)
 
     def use_plugin(self, plugin):
         """

@@ -6,7 +6,7 @@ REQUIRED = True
 OPTIONAL = False
 
 
-def test_browser_interface():
+def test_complete_unknown_field():
     """
     Check that browser raises unknownfield when no plugin declare to return this field.
     """

@@ -1,5 +1,6 @@
 import abc
-from typing import Set
+from typing import List, Set
+from ..models import SimpleTrack
 
 
 class Plugin(abc.ABC):
@@ -10,3 +11,7 @@ class Plugin(abc.ABC):
     @abc.abstractmethod
     def query(self, query_params, query_fields) -> dict:
         raise NotImplementedError("You must implement query method of your Plugin")
+
+    @abc.abstractmethod
+    def search(self, query: str) -> List[SimpleTrack]:
+        raise NotImplementedError("You must implement search method to use a plugin as search_plugin...")
