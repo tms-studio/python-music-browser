@@ -1,0 +1,80 @@
+# This workflows will upload a Python Package using Twine when a release is created
+# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+
+name: "CI/CD"
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.5'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest -r requirements/production
+    - name: Run non-regression test sets
+      run: python -m pytest -s tests/
+   
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.5'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 -r requirements/production
+    - name: Run linting script to determine syntax errors
+      run: |
+        flake8 music_browser/
+        
+  security:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.5'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit -r requirements/production
+    - name: Run security issues checks
+      run: |
+        bandit -r music_browser/
+
+  publish:
+    runs-on: ubuntu-latest
+    if: contains(github.ref, 'refs/tags/v')
+    needs:
+      - test
+      - lint
+      - security
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.5'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*

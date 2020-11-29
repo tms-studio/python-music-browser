@@ -1,8 +1,9 @@
 import setuptools
 
 setuptools.setup(
-    name='music_browser',
-    description='Music search engine for CrossPlay web service.',
-    version='0.0.1',
-    packages=setuptools.find_packages()
+    name="music-browser",
+    description="Music search engine for CrossPlay web service.",
+    version="0.0.2",
+    packages=setuptools.find_packages(),
+    install_requires=["marshmallow", "requests"],
 )

@@ -1,16 +1,52 @@
 PIPENV?=pipenv
 
-install:
-	$(PIPENV) install
+##@ Project's commands
 
-check-quality:
-	$(PIPENV) run flake8 music_browser/
 
-check-security:
-	$(PIPENV) run bandit -r music_browser/
+help: ## Show this help
+	@awk 'BEGIN {FS = ":.*##"; printf "Usage: make \033[36m<target>\033[0m\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 } /^##@/ { printf "\n\033[1m%s\033[0m\n", substr($$0, 5) } ' $(MAKEFILE_LIST)
 
-check-tests:
+clean:
+	rm -rf *.egg-info build/ dist/
+
+install: ## Install development dependencies using pipenv
+	$(PIPENV) install --dev
+
+freeze: ## Freeze project dependencies
+	$(PIPENV) lock -r --dev > requirements/development
+	$(PIPENV) lock -r > requirements/production
+	git add requirements/ && git commit -m "[Auto] Update requirements."
+
+pypi: clean ## Manually deploy package to PyPI
+	$(PIPENV) run python setup.py build bdist_wheel
+	$(PIPENV) run twine upload dist/*
+	make clean
+
+##@ Commands to ensure package quality
+
+test: ## Run non-regression tests with pytest
 	$(PIPENV) run python -m pytest -s tests/
 
-check: check-quality check-security check-tests
-	echo "Everything OK"
+lint: ## Lint package using flake8
+	$(PIPENV) run flake8 music_browser/
+
+security: ## Check for security issue using bandit
+	$(PIPENV) run bandit -r music_browser/
+
+pre-release: test lint security ## Run all  pre-release tests
+	echo "All pre-release checks passed!"
+
+##@ Commands to manually release package
+
+release: pre-release
+	$(PIPENV) run bump2version $(type)
+	git push --follow-tags
+
+patch: ## Release a new patch version of this package
+	make release type=patch
+
+minor: ## Release a new minor version of this package
+	make release type=minor
+
+major: ## Release a new major  version of this package
+	make release type=major

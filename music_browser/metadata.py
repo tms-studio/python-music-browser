@@ -40,7 +40,7 @@ class TrackMetadataQuery:
         """
         for query_field, required in query_fields.items():
             if required and not hasattr(self.known_fields, query_field):
-                raise music_browser.exceptions.UnknownField(f"No plugin can resolve required field {query_field}.")
+                raise music_browser.exceptions.UnknownField("No plugin can resolve required field %s." % query_field)
         self.query_fields = query_fields
         return self
 

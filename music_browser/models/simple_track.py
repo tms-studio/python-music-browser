@@ -1,22 +1,19 @@
-from dataclasses import dataclass
-
-
-@dataclass
 class Source:
-    id: str
-    platform: str
+    def __init__(self, id: str, platform: str):
+        self.id = id
+        self.platform = platform
 
     def __json__(self):
         return {"id": self.id, "platform": self.platform}
 
 
-@dataclass
 class SimpleTrack:
-    title: str
-    artist: str
-    album: str
-    cover: str
-    source: Source
+    def __init__(self, title: str, artist: str, album: str, cover: str, source: Source):
+        self.title = title
+        self.artist = artist
+        self.album = album
+        self.cover = cover
+        self.source = source
 
     def __str__(self):
         max_width = 20

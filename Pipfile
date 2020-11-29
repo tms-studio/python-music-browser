@@ -12,6 +12,7 @@ flake8 = "*"
 pytest = "*"
 black = "*"
 bandit = "*"
+twine = "*"
 
 [requires]
 python_version = "3.8"

@@ -5,6 +5,7 @@ from typing import List
 from urllib.parse import urlencode
 from .base import Plugin
 from ..models import SimpleTrack
+from ..exceptions import MusicBrowserException
 
 
 class SpotifyAuthentication:
@@ -14,7 +15,7 @@ class SpotifyAuthentication:
 
     def __init__(self, client_id, client_secret):
         # workout base64 header required by spotify to authenticate using client credentials.
-        self.basic_token = b64encode(f"{client_id}:{client_secret}".encode("utf-8")).decode("utf-8")
+        self.basic_token = b64encode(("%s:%s" % (client_id, client_secret)).encode("utf-8")).decode("utf-8")
         # token lazy loading. Indicates that a new token must be issued from now.
         self.expires = time.time()
 
@@ -24,12 +25,14 @@ class SpotifyAuthentication:
             "https://accounts.spotify.com/api/token",
             data={"grant_type": "client_credentials"},
             headers={
-                "Authorization": f"Basic {self.basic_token}",
+                "Authorization": "Basic %s" % self.basic_token,
                 "Content-Type": "application/x-www-form-urlencoded",
             },
         )
         # ensure that proper token response has been received
-        assert response.status_code == 200
+        if response.status_code != 200:
+            raise MusicBrowserException("Unable to retrieve access_token from Spotify API.")
+
         token_data = response.json()
         # store useful token data as properties
         self.access_token = token_data["access_token"]
