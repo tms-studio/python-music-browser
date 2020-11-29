@@ -1,7 +1,10 @@
-PYTHON?=.venv/bin/python
+PIPENV?=pipenv
+
+install:
+	$(PIPENV) install
 
 lint:
-	$(PYTHON) -m flake8 music_browser/
+	$(PIPENV) run flake8 music_browser/
 
 test:
-	$(PYTHON) -m pytest -s tests/
+	$(PIPENV) run python -m pytest -s tests/
