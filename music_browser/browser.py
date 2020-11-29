@@ -1,4 +1,4 @@
-from .query import TrackQuery
+from .metadata import TrackMetadataQuery
 
 
 class MusicBrowser:
@@ -28,7 +28,7 @@ class MusicBrowser:
         Returns:
             track_query -- An object used to do lazy loading of tracks metadata.
         """
-        return TrackQuery(self.plugins).query(
+        return TrackMetadataQuery(self.plugins).query(
             query_string=query_string, title=title, artist=artist, spotify_id=spotify_id
         )
 
