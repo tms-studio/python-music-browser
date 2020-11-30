@@ -1,19 +1,30 @@
 # This workflows will upload a Python Package using Twine when a release is created
 # For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
 
-name: "CI/CD"
+name: "Continuous Delivery (PyPI)"
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - "v*.*.*"
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version:
+          - 3.5
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.5'
+        python-version: ${{matrix.python_version}}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -23,12 +34,20 @@ jobs:
    
   lint:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version:
+          - 3.5
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.5'
+        python-version: ${{matrix.python_version}}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -39,12 +58,20 @@ jobs:
         
   security:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python_version:
+          - 3.5
+          - 3.6
+          - 3.7
+          - 3.8
+          - 3.9
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.5'
+        python-version: ${{matrix.python_version}}
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
