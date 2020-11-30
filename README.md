@@ -28,7 +28,29 @@ Coming soon...
 
 ## Make your own plugin
 
-Coming soon...
+First of all, your plugin should inherit from the `Plugin` base class.
+You will have to implement the following methods.
+
+```python
+from typing import List, Set
+from music_browser.plugins import Plugin
+from music_browser.models import SimpleTrack, FullTrack
+
+
+class DeezerPlugin(Plugin):
+    @property
+    def known_fields(self) -> Set[str]:
+        # indicates list of field that your plugin can return
+        return {"title", "artist", "album"}
+
+    def complete(self, simple_track) -> FullTrack:
+        # workout full track properties
+        return FullTrack(...)
+
+    def search(self, query) -> List[SimpleTrack]:
+        # workout search results
+        return [SimpleTrack(...), ..., SimpleTrack(...)]
+```
 
 ## Objects structure
 
