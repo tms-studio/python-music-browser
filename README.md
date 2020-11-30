@@ -2,6 +2,11 @@
 
 > A lightweight and modular python library to query tracks and their metadata from various sources.
 
+
+![continuous_integration_badge](https://github.com/tms-studio/python-music-browser/workflows/Continuous%20Integration/badge.svg)
+![continuous_delivery_badge](https://github.com/tms-studio/python-music-browser/workflows/Continuous%20Delivery%20(PyPI)/badge.svg)
+
+
 - [Plugins features](#plugins-features)
   - [Browse tracks](#browse-tracks)
   - [Complete track metadata](#complete-track-metadata)
