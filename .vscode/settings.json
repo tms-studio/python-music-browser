@@ -1,4 +1,6 @@
 {
+    "editor.formatOnSave": true,
+    "markdown.extension.toc.levels": "2..6",
     "python.pythonPath": ".venv/bin/python",
     "python.formatting.provider": "black",
     "python.formatting.blackArgs": [
@@ -6,6 +8,5 @@
     ],
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
-    "python.linting.enabled": true,
-    "editor.formatOnSave": true
+    "python.linting.enabled": true
 }

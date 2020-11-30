@@ -13,6 +13,7 @@ pytest = "*"
 black = "*"
 bandit = "*"
 twine = "*"
+wheel = "*"
 
 [requires]
 python_version = "3.8"

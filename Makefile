@@ -50,3 +50,11 @@ minor: ## Release a new minor version of this package
 
 major: ## Release a new major  version of this package
 	make release type=major
+
+hotfix: ## Commit current changes, and overwrite latest release with it.
+	@latest_release=$(shell git describe --tags); \
+	git tag -d $$latest_release; \
+	git push --delete origin $$latest_release; \
+	git add . && git commit -m "[Hotfix] fix issue in release $$latest_release"; \
+	git tag -am "Release $$latest_release" $$latest_release; \
+	git push --follow-tags
