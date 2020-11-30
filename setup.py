@@ -15,6 +15,7 @@ setuptools.setup(
     url="https://github.com/tms-studio/python-music-browser",
     long_description=get_description_from_readme(),
     long_description_content_type="text/markdown",
+    license_file="LICENSE",
     packages=setuptools.find_packages(),
     install_requires=["marshmallow", "requests"],
     classifiers=[
