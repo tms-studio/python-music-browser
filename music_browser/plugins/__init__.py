@@ -1,4 +1,4 @@
 from .base import Plugin
-from .spotify import SpotifyPlugin
+from .amazon import AmazonPlugin
 from .deezer import DeezerPlugin
-from .amazon_music import AmazonMusicPlugin
+from .spotify import SpotifyPlugin
