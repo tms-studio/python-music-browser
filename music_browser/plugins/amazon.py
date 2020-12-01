@@ -2,6 +2,7 @@ import requests
 from typing import List
 from .base import Plugin
 from ..models import SimpleTrack
+from ..exceptions import MusicBrowserException
 
 headers = {
     "x-amzn-device-family": "WebPlayer",
@@ -53,7 +54,9 @@ class AmazonPlugin(Plugin):
         response = requests.get(
             "https://eu.web.skill.music.a2z.com/api/searchCatalogTracks", headers=headers, params=params
         )
-        assert response.status_code == 200
+        # ensure that proper token response has been received
+        if response.status_code != 200:
+            raise MusicBrowserException("Unable to retrieve access_token from Spotify API.")
 
         tracks_data = response.json()["methods"][0]["template"]["widgets"][0]["items"]
 
