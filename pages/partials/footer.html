@@ -1,0 +1,29 @@
+{#-
+    This file was automatically generated - do not edit
+  -#}
+{% import "partials/language.html" as lang with context %}
+<footer class="md-footer">
+    <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-footer-copyright">
+                {% if config.copyright %}
+                <div class="md-footer-copyright__highlight">
+                    {{ config.copyright }}
+                </div>
+                {% endif %}
+                Made with
+                <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+                    Material for MkDocs
+                </a>
+
+            </div>
+            <div>
+                <img alt="continuous_integration_badge"
+                    src="https://github.com/tms-studio/python-music-browser/workflows/Continuous%20Integration/badge.svg">
+                <img alt="continuous_delivery_badge"
+                    src="https://github.com/tms-studio/python-music-browser/workflows/Continuous%20Delivery%20(PyPI)/badge.svg">
+            </div>
+            {% include "partials/social.html" %}
+        </div>
+    </div>
+</footer>

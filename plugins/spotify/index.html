@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="../../assets/images/favicon.png" rel="shortcut icon"/>
+<meta content="mkdocs-1.1.2, mkdocs-material-6.1.6" name="generator"/>
+<title>Spotify - Python Music-Browser</title>
+<link href="../../assets/stylesheets/main.6910b76c.min.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/palette.196e0c26.min.css" rel="stylesheet"/>
+<meta content="#4cae4f" name="theme-color"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&amp;display=fallback" rel="stylesheet"/>
+<style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+</head>
+<body data-md-color-accent="" data-md-color-primary="green" data-md-color-scheme="slate" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#music_browser.plugins.spotify">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header-nav md-grid">
+<a aria-label="Python Music-Browser" class="md-header-nav__button md-logo" href="../.." title="Python Music-Browser">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+<label class="md-header-nav__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"></path></svg>
+</label>
+<div class="md-header-nav__title" data-md-component="header-title">
+<div class="md-header-nav__ellipsis">
+<span class="md-header-nav__topic md-ellipsis">
+            Python Music-Browser
+          </span>
+<span class="md-header-nav__topic md-ellipsis">
+            
+              Spotify
+            
+          </span>
+</div>
+</div>
+<label class="md-header-nav__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" data-md-state="active" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"></path></svg>
+</label>
+<button aria-label="Clear" class="md-search__icon md-icon" data-md-component="search-reset" tabindex="-1" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg>
+</button>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs md-tabs--active" data-md-component="tabs">
+<div class="md-tabs__inner md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../..">
+      Home
+    </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../installation/">
+        Getting started
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link md-tabs__link--active" href="../deezer/">
+        Reference
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Python Music-Browser" class="md-nav__button md-logo" href="../.." title="Python Music-Browser">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"></path></svg>
+</a>
+    Python Music-Browser
+  </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../..">
+      Home
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" id="nav-2" type="checkbox"/>
+<label class="md-nav__link" for="nav-2">
+      Getting started
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Getting started" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-2">
+<span class="md-nav__icon md-icon"></span>
+        Getting started
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../installation/">
+      Installation
+    </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../quickstart/">
+      Quickstart
+    </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-3" id="nav-3" type="checkbox"/>
+<label class="md-nav__link" for="nav-3">
+      Reference
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Reference" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="nav-3">
+<span class="md-nav__icon md-icon"></span>
+        Reference
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="nav-3-1" id="nav-3-1" type="checkbox"/>
+<label class="md-nav__link" for="nav-3-1">
+      Plugins
+      <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Plugins" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="nav-3-1">
+<span class="md-nav__icon md-icon"></span>
+        Plugins
+      </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../deezer/">
+      Deezer
+    </a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" data-md-toggle="toc" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+        Spotify
+        <span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+      Spotify
+    </a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify">
+    music_browser.plugins.spotify
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication">
+    SpotifyAuthentication
+  </a>
+<nav aria-label="SpotifyAuthentication" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.__init__">
+    __init__()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.authenticate">
+    authenticate()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.get_token">
+    get_token()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.has_expired">
+    has_expired()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin">
+    SpotifyPlugin
+  </a>
+<nav aria-label="SpotifyPlugin" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.known_fields">
+    known_fields
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.__init__">
+    __init__()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.query">
+    query()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.search">
+    search()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify">
+    music_browser.plugins.spotify
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication">
+    SpotifyAuthentication
+  </a>
+<nav aria-label="SpotifyAuthentication" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.__init__">
+    __init__()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.authenticate">
+    authenticate()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.get_token">
+    get_token()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyAuthentication.has_expired">
+    has_expired()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin">
+    SpotifyPlugin
+  </a>
+<nav aria-label="SpotifyPlugin" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.known_fields">
+    known_fields
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.__init__">
+    __init__()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.query">
+    query()
+  </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#music_browser.plugins.spotify.SpotifyPlugin.search">
+    search()
+  </a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content">
+<article class="md-content__inner md-typeset">
+<h1>Spotify</h1>
+<div class="doc doc-object doc-module">
+<h2 class="hidden-toc" href="#music_browser.plugins.spotify" id="music_browser.plugins.spotify" style="visibility: hidden; position: absolute;">
+</h2>
+<div class="doc doc-contents first">
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyAuthentication">
+<code>SpotifyAuthentication</code>
+</h2>
+<div class="doc doc-contents">
+<p>Manage token based authentication for Spotify Plugin.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyAuthentication.__init__">
+<code class="highlight language-python">
+__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-special"><code>special</code></small>
+</span>
+</h3>
+<div class="doc doc-contents">
+<p>Store client_id and client_secret encoded in base64.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Identifier of your application obtained by declaring your app to Spotify.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td><code>str</code></td>
+<td>
+<p>Secret key of your application obtained by declaring your app to Spotify.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>music_browser/plugins/spotify.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Store client_id and client_secret encoded in base64.</span>
+
+<span class="sd">    Arguments:</span>
+<span class="sd">        client_id: Identifier of your application obtained by declaring your app to Spotify.</span>
+<span class="sd">        client_secret: Secret key of your application obtained by declaring your app to Spotify.</span>
+<span class="sd">    """</span>
+    <span class="c1"># workout base64 header required by spotify to authenticate using client credentials.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">basic_token</span> <span class="o">=</span> <span class="n">b64encode</span><span class="p">((</span><span class="s2">"</span><span class="si">%s</span><span class="s2">:</span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">))</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">"utf-8"</span><span class="p">)</span>
+    <span class="c1"># token lazy loading. Indicates that a new token must be issued from now.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">expires</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyAuthentication.authenticate">
+<code class="highlight language-python">
+authenticate<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Issue a fresh access token and update expiration counter.</p>
+<details class="quote">
+<summary>Source code in <code>music_browser/plugins/spotify.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Issue a fresh access token and update expiration counter.</span>
+<span class="sd">    """</span>
+    <span class="c1"># exchange client credentials for a token against spotify accounts API.</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="s2">"https://accounts.spotify.com/api/token"</span><span class="p">,</span>
+        <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">"grant_type"</span><span class="p">:</span> <span class="s2">"client_credentials"</span><span class="p">},</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Basic </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">basic_token</span><span class="p">,</span>
+            <span class="s2">"Content-Type"</span><span class="p">:</span> <span class="s2">"application/x-www-form-urlencoded"</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+    <span class="c1"># ensure that proper token response has been received</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">MusicBrowserException</span><span class="p">(</span><span class="s2">"Unable to retrieve access_token from Spotify API."</span><span class="p">)</span>
+
+    <span class="n">token_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="c1"># store useful token data as properties</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">token_data</span><span class="p">[</span><span class="s2">"access_token"</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">expires</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">+</span> <span class="n">token_data</span><span class="p">[</span><span class="s2">"expires_in"</span><span class="p">]</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyAuthentication.get_token">
+<code class="highlight language-python">
+get_token<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>str</code></td>
+<td>
+<p>A valid access token. If token was stale, it is refreshed before being returned.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>music_browser/plugins/spotify.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_token</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        A valid access token. If token was stale, it is refreshed before being returned.</span>
+<span class="sd">    """</span>
+    <span class="c1"># ensure that known token is up-to-date</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">has_expired</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">authenticate</span><span class="p">()</span>
+    <span class="c1"># ... then return valid access token</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyAuthentication.has_expired">
+<code class="highlight language-python">
+has_expired<span class="p">(</span><span class="bp">self</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Check if stored token is still valid.</p>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bool</code></td>
+<td>
+<p><code>true</code> if currently stored token is valid, <code>false</code> otherwise.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>music_browser/plugins/spotify.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">has_expired</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Check if stored token is still valid.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        `true` if currently stored token is valid, `false` otherwise.</span>
+<span class="sd">    """</span>
+    <span class="c1"># check if expiration time is passed</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">expires</span> <span class="o">&lt;</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyPlugin">
+<code>SpotifyPlugin</code>
+</h2>
+<div class="doc doc-contents">
+<p>Define methods to search tracks on spotify
+and complete metadata from spotify's database.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyPlugin.known_fields">
+<code class="highlight">
+known_fields        </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-property"><code>property</code></small>
+<small class="doc doc-property doc-property-readonly"><code>readonly</code></small>
+</span>
+</h3>
+<div class="doc doc-contents">
+<p>Return a set of known fields that can be returned by complete() method.</p>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyPlugin.__init__">
+<code class="highlight language-python">
+__init__<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">)</span> </code>
+<span class="doc doc-properties">
+<small class="doc doc-property doc-property-special"><code>special</code></small>
+</span>
+</h3>
+<div class="doc doc-contents">
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>client_id</code></td>
+<td><code>str</code></td>
+<td>
+<p>Identifier of your application obtained by declaring your app to Spotify.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+<tr>
+<td><code>client_secret</code></td>
+<td><code>str</code></td>
+<td>
+<p>Secret key of your application obtained by declaring your app to Spotify.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>music_browser/plugins/spotify.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">client_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Arguments:</span>
+<span class="sd">        client_id: Identifier of your application obtained by declaring your app to Spotify.</span>
+<span class="sd">        client_secret: Secret key of your application obtained by declaring your app to Spotify.</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">auth</span> <span class="o">=</span> <span class="n">SpotifyAuthentication</span><span class="p">(</span><span class="n">client_id</span><span class="p">,</span> <span class="n">client_secret</span><span class="p">)</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyPlugin.query">
+<code class="highlight language-python">
+query<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_params</span><span class="p">,</span> <span class="n">query_fields</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Complete metadata of a track based on simple track data like title, artist, or id.</p>
+<details class="quote">
+<summary>Source code in <code>music_browser/plugins/spotify.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query_params</span><span class="p">,</span> <span class="n">query_fields</span><span class="p">):</span>
+    <span class="sd">"""</span>
+<span class="sd">    Complete metadata of a track based on simple track data like title, artist, or id.</span>
+<span class="sd">    """</span>
+    <span class="k">pass</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-method">
+<h3 class="doc doc-heading" id="music_browser.plugins.spotify.SpotifyPlugin.search">
+<code class="highlight language-python">
+search<span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">)</span> </code>
+</h3>
+<div class="doc doc-contents">
+<p>Return list of tracks matching the query.</p>
+<p><strong>Parameters:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>query</code></td>
+<td><code>str</code></td>
+<td>
+<p>String describing what track you are looking for.</p>
+</td>
+<td><em>required</em></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Returns:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>List[music_browser.models.SimpleTrack]</code></td>
+<td>
+<p>List of tracks known by Spotify that matches the query.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>music_browser/plugins/spotify.py</code></summary>
+<div class="highlight">
+<pre><span></span><code><span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">SimpleTrack</span><span class="p">]:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Return list of tracks matching the query.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">        query: String describing what track you are looking for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of tracks known by Spotify that matches the query.</span>
+<span class="sd">    """</span>
+
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s2">"https://api.spotify.com/v1/search?"</span> <span class="o">+</span> <span class="n">urlencode</span><span class="p">({</span><span class="s2">"type"</span><span class="p">:</span> <span class="s2">"track"</span><span class="p">,</span> <span class="s2">"query"</span><span class="p">:</span> <span class="n">query</span><span class="p">}),</span>
+        <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">"Authorization"</span><span class="p">:</span> <span class="s2">"Bearer </span><span class="si">%s</span><span class="s2">"</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_token</span><span class="p">()},</span>
+    <span class="p">)</span>
+
+    <span class="n">tracks</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">track_data</span> <span class="ow">in</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s2">"tracks"</span><span class="p">][</span><span class="s2">"items"</span><span class="p">]:</span>
+        <span class="n">tracks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="n">SimpleTrack</span><span class="p">(</span>
+                <span class="n">album</span><span class="o">=</span><span class="n">track_data</span><span class="p">[</span><span class="s2">"album"</span><span class="p">][</span><span class="s2">"name"</span><span class="p">],</span>
+                <span class="n">artist</span><span class="o">=</span><span class="n">track_data</span><span class="p">[</span><span class="s2">"artists"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"name"</span><span class="p">],</span>
+                <span class="n">title</span><span class="o">=</span><span class="n">track_data</span><span class="p">[</span><span class="s2">"name"</span><span class="p">],</span>
+                <span class="n">cover</span><span class="o">=</span><span class="n">track_data</span><span class="p">[</span><span class="s2">"album"</span><span class="p">][</span><span class="s2">"images"</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">"url"</span><span class="p">],</span>
+                <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="s2">"id"</span><span class="p">:</span> <span class="n">track_data</span><span class="p">[</span><span class="s2">"id"</span><span class="p">],</span> <span class="s2">"platform"</span><span class="p">:</span> <span class="s2">"spotify"</span><span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tracks</span>
+</code></pre>
+</div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-footer-copyright">
+                
+                Made with
+                <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+                    Material for MkDocs
+                </a>
+</div>
+<div>
+<img alt="continuous_integration_badge" src="https://github.com/tms-studio/python-music-browser/workflows/Continuous%20Integration/badge.svg"/>
+<img alt="continuous_delivery_badge" src="https://github.com/tms-studio/python-music-browser/workflows/Continuous%20Delivery%20(PyPI)/badge.svg"/>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
+<script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+<script>
+        app = initialize({
+          base: "../..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+</body>
+</html>
