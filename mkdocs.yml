@@ -1,0 +1,23 @@
+site_name: Python Music-Browser
+theme:
+    name: material
+    custom_dir: docs/pages
+    palette:
+        primary: green
+        scheme: slate
+    features:
+        - navigation.tabs
+
+plugins:
+    - search
+    - mkdocstrings
+
+nav:
+    - Home: index.md
+    - Getting started: 
+        - Installation: installation.md
+        - Quickstart: quickstart.md
+    - Reference:
+        - Plugins:
+            - Deezer: plugins/deezer.md
+            - Spotify: plugins/spotify.md

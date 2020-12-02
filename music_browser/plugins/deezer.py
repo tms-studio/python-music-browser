@@ -6,14 +6,34 @@ from ..models import SimpleTrack
 
 
 class DeezerPlugin(Plugin):
+    """
+    Define methods to search tracks on deezer
+    and complete metadata from deezer's database.
+    """
+
     @property
     def known_fields(self):
+        """
+        Return a set of known fields that can be returned by complete() method.
+        """
         return set()
 
-    def query(self):
+    def query(self, track: SimpleTrack) -> object:
+        """
+        Complete metadata of a track based on simple track data like title, artist, or id.
+        """
         pass
 
-    def search(self, query) -> List[SimpleTrack]:
+    def search(self, query: str) -> List[SimpleTrack]:
+        """
+        Return list of tracks matching the query.
+
+        Parameters:
+            query: String describing what track you are looking for.
+
+        Returns:
+            List of tracks known by Deezer that matches the query.
+        """
         response = requests.get("https://api.deezer.com/search?" + urlencode({"q": query}))
 
         tracks = []
